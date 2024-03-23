@@ -8,26 +8,88 @@ datasource db {
 }
 
 model User {
-  id           String        @id @default(uuid())
-  first_name   String        @db.VarChar(50)
-  last_name    String        @db.VarChar(50)
-  email        String        @unique @db.VarChar(100)
-  password     String        @db.VarChar(100)
-  transactions Transaction[]
+  id           String         @id @db.Uuid
+  first_name   String         @db.VarChar(50)
+  last_name    String         @db.VarChar(50)
+  email        String         @unique @db.VarChar(100)
+  password     String         @db.VarChar(100)
+  user_lqc User_LQC[]
+  avaliations Avaliation[] 
+  workstation WorkStation[]
 }
 
-model Transaction {
-  id      String          @id @default(uuid())
-  user_id String
-  user    User            @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  name    String          @db.VarChar(50)
-  date    DateTime        @db.Date
-  amount  Decimal         @db.Decimal(10, 2)
-  type    TransactionType
+model User_LQC {
+  id                  String         @id @db.Uuid
+  user_id             String         @db.Uuid
+  first_name          String         @db.VarChar(50)
+  last_name           String         @db.VarChar(50)
+  registration        String         @unique @db.VarChar(50)
+  position            position_type
+  admission_date      DateTime       @db.Date
+  user User                          @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  avaliations Avaliation[]    
+  workstation WorkStation[]
 }
 
-enum TransactionType {
-  EARNING
-  EXPENSE
-  INVESTMENT
+model Avaliation {
+  id               String            @id @db.Uuid
+  user_id          String            @db.Uuid
+  user_lqc_id      String            @db.Uuid
+  type             avaliation_type
+  score            Decimal           @db.Decimal(2,0)
+  date             DateTime          @db.Date
+  comment          String            @db.VarChar(2000)
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  user_lqc User_LQC @relation(fields: [user_lqc_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }
+
+model WorkStation {
+  id               String               @id @db.Uuid
+  user_id          String               @db.Uuid
+  user_lqc_id      String               @db.Uuid
+  station_type     station_name_type
+  line_type        line_type            
+  Able             Boolean              @db.Boolean
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  user_lqc User_LQC @relation(fields: [user_lqc_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+
+enum position_type {
+  Operator_A
+  Operator_B
+}
+
+enum avaliation_type {
+  CLEANING_5S
+  DISCIPLINE
+  COMMITMENT
+  IMPROVEMENTS
+  AUDITS
+  DETECTION
+  DEFECT_LEVEL
+  OQC_DETECTION
+  WARNINGS
+  OTHERS
+}
+
+enum station_name_type {
+  APPEARANCE
+  CONNECTION
+  DISCONNECTION
+  MICROWAVE_LEAK_TEST
+  FUNCTIONAL_TEST_1
+  FUNCTIONAL_TEST_2
+  LEAK_TEST
+  PANEL_TEST
+  MEMBRANE_TEST
+}
+
+enum line_type {
+  AA1
+  AC1
+  AC2
+  AC3
+  AM1
+}
+

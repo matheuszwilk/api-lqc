@@ -11,14 +11,19 @@ services:
         ports:
             - '5432:5432'
         volumes:
-            - ./.postgres-data:/var/lib/postgresql/data
+            - postgres-data:/var/lib/postgre-test/data # Corrigindo o caminho do volume
 
-    postgres-test:
-        image: postgres
-        container_name: finance-app-postgres-test
-        environment:
-            POSTGRES_PASSWORD: password
-            POSTGRES_USER: postgres
-            POSTGRES_DB: finance-app
-        ports:
-            - '5433:5432'
+    # postgres-test:
+    #     image: postgres
+    #     container_name: finance-app-postgres-test
+    #     environment:
+    #         POSTGRES_PASSWORD: password
+    #         POSTGRES_USER: postgres
+    #         POSTGRES_DB: finance-app
+    #     ports:
+    #         - '5433:5432' # Mapeando a porta 5433 do host para a porta 5432 do contêiner
+    #     volumes:
+    #         - postgres-data:/var/lib/postgre-test/data
+
+volumes:
+    postgres-data: # Mantendo o nome do volume para persistência de dados

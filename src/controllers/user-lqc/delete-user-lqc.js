@@ -1,15 +1,15 @@
 import { UserNotFoundError } from '../../errors/user.js'
 import {
-    serverError,
-    userNotFoundResponse,
     checkIfIdIsValid,
     invalidIdResponse,
+    userNotFoundResponse,
     ok,
+    serverError,
 } from '../helpers/index.js'
 
-export class GetUserBalanceController {
-    constructor(getUserBalanceUseCase) {
-        this.getUserBalanceUseCase = getUserBalanceUseCase
+export class DeleteUserLqcController {
+    constructor(deleteUserLqcUseCase) {
+        this.deleteUserLqcUseCase = deleteUserLqcUseCase
     }
 
     async execute(httpRequest) {
@@ -22,16 +22,16 @@ export class GetUserBalanceController {
                 return invalidIdResponse()
             }
 
-            const balance = await this.getUserBalanceUseCase.execute(userId)
+            const deletedUserLqc =
+                await this.deleteUserLqcUseCase.execute(userId)
 
-            return ok(balance)
+            return ok(deletedUserLqc)
         } catch (error) {
             if (error instanceof UserNotFoundError) {
                 return userNotFoundResponse()
             }
 
             console.error(error)
-
             return serverError()
         }
     }

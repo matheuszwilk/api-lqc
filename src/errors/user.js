@@ -11,3 +11,10 @@ export class UserNotFoundError extends Error {
         this.name = 'UserNotFoundError'
     }
 }
+
+export class RegistrationAlreadyInUseError extends Error {
+    constructor(registration) {
+        super(`The registration ${registration} is already in use.`)
+        this.name = 'RegistrationAlreadyInUseError'
+    }
+}
