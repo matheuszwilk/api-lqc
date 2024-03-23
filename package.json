@@ -20,6 +20,7 @@
         "@faker-js/faker": "^8.4.0",
         "@types/jest": "^29.5.12",
         "babel-jest": "^29.7.0",
+        "child_process": "^1.0.2",
         "eslint": "^8.46.0",
         "git-commit-msg-linter": "^5.0.4",
         "husky": "^8.0.3",
