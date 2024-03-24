@@ -5,7 +5,7 @@ services:
         image: postgres
         container_name: finance-app-postgres
         environment:
-            POSTGRES_PASSWORD: password
+            POSTGRES_PASSWORD: password1
             POSTGRES_USER: postgres
             POSTGRES_DB: finance-app
         ports:
@@ -17,7 +17,7 @@ services:
         image: postgres
         container_name: finance-app-postgres-test
         environment:
-            POSTGRES_PASSWORD: password
+            POSTGRES_PASSWORD: password1
             POSTGRES_USER: postgres
             POSTGRES_DB: finance-app
         ports:
