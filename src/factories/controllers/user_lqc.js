@@ -1,6 +1,7 @@
 import {
     PostgresCreateUserLqcRepository,
     PostgresDeleteUserLqcRepository,
+    PostgresGetAllUserLqcRepository,
     PostgresGetUserByIdRepository,
     PostgresGetUserByRegistrationRepository,
     PostgresGetUserLqcByIdRepository,
@@ -8,10 +9,12 @@ import {
 import {
     CreateUserLqcUseCase,
     DeleteUserLqcUseCase,
+    GetAllUsersUseCase,
     GetUserLqcByIdUseCase,
 } from '../../use-cases/index.js'
 import {
     CreateUserLqcController,
+    GetAllUsersController,
     GetUserLqcByIdController,
 } from '../../controllers/index.js'
 import { IdGeneratorAdapter } from '../../adapters/index.js'
@@ -38,14 +41,27 @@ export const makeCreateUserLqcController = () => {
     return createUserLqcController
 }
 
+export const makeGetAllUserLqcController = () => {
+    const getAllUserLqcRepository = new PostgresGetAllUserLqcRepository()
+
+    const getAllUserLqcUseCase = new GetAllUsersUseCase(getAllUserLqcRepository)
+
+    const getAllUserLqcController = new GetAllUsersController(
+        getAllUserLqcUseCase,
+    )
+    return getAllUserLqcController
+}
+
 export const makeGetUserLqcByIdController = () => {
     const getUserLqcByIdRepository = new PostgresGetUserLqcByIdRepository()
 
-    const getUserLqcUseCase = new GetUserLqcByIdUseCase(
+    const getUserLqcByIdUseCase = new GetUserLqcByIdUseCase(
         getUserLqcByIdRepository,
     )
 
-    const getUserLqcController = new GetUserLqcByIdController(getUserLqcUseCase)
+    const getUserLqcController = new GetUserLqcByIdController(
+        getUserLqcByIdUseCase,
+    )
 
     return getUserLqcController
 }

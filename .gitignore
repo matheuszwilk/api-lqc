@@ -6,7 +6,7 @@ node_modules
 .env.test
 
 # Postgres volume
-.postgres-data
+.docker/postgres
 
 # Tests
 coverage
