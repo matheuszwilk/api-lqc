@@ -4,6 +4,7 @@ import {
     makeDeleteUserLqcController,
     makeGetAllUserLqcController,
     makeGetUserLqcByIdController,
+    makeUpdateLqcController,
 } from '../factories/controllers/user_lqc.js'
 
 export const usersLqcRouter = Router()
@@ -36,6 +37,14 @@ usersLqcRouter.delete('/:userId', async (request, response) => {
     const deleteUserLqcController = makeDeleteUserLqcController()
 
     const { statusCode, body } = await deleteUserLqcController.execute(request)
+
+    response.status(statusCode).send(body)
+})
+
+usersLqcRouter.patch('/:userId', async (request, response) => {
+    const updateUserLqcController = makeUpdateLqcController()
+
+    const { statusCode, body } = await updateUserLqcController.execute(request)
 
     response.status(statusCode).send(body)
 })
