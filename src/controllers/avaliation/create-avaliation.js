@@ -1,5 +1,5 @@
 import { UserNotFoundError } from '../../errors/user.js'
-import { createAvaliationSchema } from '../../schemas/avaliation.js'
+import { createAvaliationSchema } from '../../schemas/index.js'
 import {
     badRequest,
     created,
