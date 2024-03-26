@@ -2,7 +2,7 @@ import {
     RegistrationAlreadyInUseError,
     UserNotFoundError,
 } from '../../errors/user.js'
-import { updateUserSchema } from '../../schemas/user.js'
+import { updateUserLQCSchema } from '../../schemas/userLQC.js'
 import {
     checkIfIdIsValid,
     invalidIdResponse,
@@ -30,7 +30,7 @@ export class UpdateUserLqcController {
 
             const params = httpRequest.body
 
-            await updateUserSchema.parseAsync(params)
+            await updateUserLQCSchema.parseAsync(params)
 
             const updatedUserLqc = await this.updateUserLqcUseCase.execute(
                 userLqcId,
