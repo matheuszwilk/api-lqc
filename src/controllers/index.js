@@ -12,3 +12,5 @@ export * from './user-lqc/create-user-lqc.js'
 export * from './user-lqc/get-user-lqc.js'
 export * from './user-lqc/get-user-lqc-by-id.js'
 export * from './user-lqc/update-user-lqc.js'
+
+export * from './avaliation/create-avaliation.js'
