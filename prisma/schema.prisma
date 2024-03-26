@@ -14,8 +14,6 @@ model User {
   email        String         @unique @db.VarChar(100)
   password     String         @db.VarChar(100)
   user_lqc User_LQC[]
-  avaliations Avaliation[] 
-  workstation WorkStation[]
 }
 
 model User_LQC {
@@ -33,25 +31,21 @@ model User_LQC {
 
 model Avaliation {
   id               String            @id @db.Uuid
-  user_id          String            @db.Uuid
   user_lqc_id      String            @db.Uuid
   type             avaliation_type
   score            Decimal           @db.Decimal(2,0)
   date             DateTime          @db.Date
   comment          String            @db.VarChar(2000)
-  user User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  user_lqc User_LQC @relation(fields: [user_lqc_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  user_lqc User_LQC                  @relation(fields: [user_lqc_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }
 
 model WorkStation {
   id               String               @id @db.Uuid
-  user_id          String               @db.Uuid
   user_lqc_id      String               @db.Uuid
   station_type     station_name_type
   line_type        line_type            
   Able             Boolean              @db.Boolean
-  user User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  user_lqc User_LQC @relation(fields: [user_lqc_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  user_lqc User_LQC                     @relation(fields: [user_lqc_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }
 
 
