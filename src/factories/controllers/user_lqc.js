@@ -5,17 +5,20 @@ import {
     PostgresGetUserByIdRepository,
     PostgresGetUserByRegistrationRepository,
     PostgresGetUserLqcByIdRepository,
+    PostgresUpdateUserLqcRepository,
 } from '../../repositories/postgres/index.js'
 import {
     CreateUserLqcUseCase,
     DeleteUserLqcUseCase,
     GetAllUsersUseCase,
     GetUserLqcByIdUseCase,
+    UpdateUserLqcUseCase,
 } from '../../use-cases/index.js'
 import {
     CreateUserLqcController,
     GetAllUsersController,
     GetUserLqcByIdController,
+    UpdateUserLqcController,
 } from '../../controllers/index.js'
 import { IdGeneratorAdapter } from '../../adapters/index.js'
 import { DeleteUserLqcController } from '../../controllers/user-lqc/delete-user-lqc.js'
@@ -78,4 +81,21 @@ export const makeDeleteUserLqcController = () => {
     )
 
     return deleteUserLqcController
+}
+
+export const makeUpdateLqcController = () => {
+    const getUserByRegistrationRepository =
+        new PostgresGetUserByRegistrationRepository()
+    const updateUserLqcRepository = new PostgresUpdateUserLqcRepository()
+
+    const updateUserLqcUseCase = new UpdateUserLqcUseCase(
+        getUserByRegistrationRepository,
+        updateUserLqcRepository,
+    )
+
+    const updateUserLqcController = new UpdateUserLqcController(
+        updateUserLqcUseCase,
+    )
+
+    return updateUserLqcController
 }
