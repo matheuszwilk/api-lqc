@@ -54,6 +54,11 @@ export const createAvaliationSchema = z.object({
         .datetime({
             message: 'Date must be a valid date.',
         }),
+    comment: z
+        .string({
+            required_error: 'Comment is required.',
+        })
+        .trim(),
 })
 
 export const updateAvaliationSchema = createAvaliationSchema
