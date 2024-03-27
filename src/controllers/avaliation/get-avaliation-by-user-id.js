@@ -25,10 +25,12 @@ export class GetAvaliationByUserIdController {
             const avaliation =
                 await this.getAvaliationByUserIdUseCase.execute(userId)
 
+            if (!avaliation) {
+                return userNotFoundResponse()
+            }
+
             return ok(avaliation)
         } catch (error) {
-            console.error(error)
-
             if (error instanceof UserNotFoundError) {
                 return userNotFoundResponse()
             }

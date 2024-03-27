@@ -34,14 +34,14 @@ export const makeCreateAvaliationController = () => {
 }
 
 export const makeGetAvaliationsController = () => {
+    const getUserByIdRepository = new PostgresGetUserLqcByIdRepository()
+
     const getAvaliationByUserIdRepository =
         new PostgresGetAvaliationByUserIdRepository()
 
-    const getUserByIdRepository = new PostgresGetUserLqcByIdRepository()
-
     const getAvaliationByUserIdUseCase = new GetAvaliationByUserIdUseCase(
-        getAvaliationByUserIdRepository,
         getUserByIdRepository,
+        getAvaliationByUserIdRepository,
     )
 
     const getAvaliationByUserIdController = new GetAvaliationByUserIdController(

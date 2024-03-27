@@ -1,9 +1,9 @@
 import { UserNotFoundError } from '../../errors/user.js'
 
 export class GetAvaliationByUserIdUseCase {
-    constructor(getAvaliationByUserIdRepository, getUserByIdRepository) {
-        this.getAvaliationByUserIdRepository = getAvaliationByUserIdRepository
+    constructor(getUserByIdRepository, getAvaliationByUserIdRepository) {
         this.getUserByIdRepository = getUserByIdRepository
+        this.getAvaliationByUserIdRepository = getAvaliationByUserIdRepository
     }
 
     async execute(userId) {

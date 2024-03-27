@@ -16,10 +16,9 @@ avaliationRouter.post('/', async (request, response) => {
 })
 
 avaliationRouter.get('/:userId', async (request, response) => {
-    const createAvaliationController = makeGetAvaliationsController()
+    const getAvaliationController = makeGetAvaliationsController()
 
-    const { statusCode, body } =
-        await createAvaliationController.execute(request)
+    const { statusCode, body } = await getAvaliationController.execute(request)
 
     response.status(statusCode).send(body)
 })
