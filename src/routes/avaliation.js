@@ -3,6 +3,7 @@ import {
     makeCreateAvaliationController,
     makeDeleteAvaliationController,
     makeGetAvaliationsController,
+    makeUpdateAvaliationController,
 } from '../factories/controllers/avaliation.js'
 
 export const avaliationRouter = Router()
@@ -29,6 +30,15 @@ avaliationRouter.delete('/:userId', async (request, response) => {
 
     const { statusCode, body } =
         await deleteAvaliationController.execute(request)
+
+    response.status(statusCode).send(body)
+})
+
+avaliationRouter.patch('/:userId', async (request, response) => {
+    const updateAvaliationController = makeUpdateAvaliationController()
+
+    const { statusCode, body } =
+        await updateAvaliationController.execute(request)
 
     response.status(statusCode).send(body)
 })
