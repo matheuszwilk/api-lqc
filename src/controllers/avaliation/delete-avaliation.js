@@ -14,16 +14,16 @@ export class DeleteAvaliationController {
 
     async execute(httpRequest) {
         try {
-            const idIsValid = checkIfIdIsValid(httpRequest.params.userId)
+            const userId = httpRequest.params.userId
+
+            const idIsValid = checkIfIdIsValid(userId)
 
             if (!idIsValid) {
                 return invalidIdResponse()
             }
 
             const deletedAvaliation =
-                await this.deleteAvaliationUseCase.execute(
-                    httpRequest.params.userId,
-                )
+                await this.deleteAvaliationUseCase.execute(userId)
 
             return ok(deletedAvaliation)
         } catch (error) {
@@ -32,7 +32,6 @@ export class DeleteAvaliationController {
             }
 
             console.error(error)
-
             return serverError()
         }
     }
