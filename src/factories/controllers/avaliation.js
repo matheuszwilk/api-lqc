@@ -3,17 +3,20 @@ import {
     CreateAvaliationController,
     DeleteAvaliationController,
     GetAvaliationByUserIdController,
+    UpdateAvaliationController,
 } from '../../controllers/index.js'
 import {
     PostgresCreateAvaliationRepository,
     PostgresDeleteAvaliationRepository,
     PostgresGetAvaliationByUserIdRepository,
     PostgresGetUserLqcByIdRepository,
+    PostgresUpdateAvaliationRepository,
 } from '../../repositories/postgres/index.js'
 import {
     CreateAvaliationUseCase,
     DeleteAvaliationUseCase,
     GetAvaliationByUserIdUseCase,
+    UpdateAvaliationUseCase,
 } from '../../use-cases/index.js'
 
 export const makeCreateAvaliationController = () => {
@@ -66,4 +69,18 @@ export const makeDeleteAvaliationController = () => {
     )
 
     return deleteAvaliationController
+}
+
+export const makeUpdateAvaliationController = () => {
+    const updateAvaliationRepository = new PostgresUpdateAvaliationRepository()
+
+    const updateAvaliationUseCase = new UpdateAvaliationUseCase(
+        updateAvaliationRepository,
+    )
+
+    const updateAvaliationController = new UpdateAvaliationController(
+        updateAvaliationUseCase,
+    )
+
+    return updateAvaliationController
 }
