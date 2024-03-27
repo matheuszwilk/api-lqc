@@ -1,10 +1,17 @@
 import { IdGeneratorAdapter } from '../../adapters/id-generator.js'
-import { CreateAvaliationController } from '../../controllers/index.js'
+import {
+    CreateAvaliationController,
+    GetAvaliationByUserIdController,
+} from '../../controllers/index.js'
 import {
     PostgresCreateAvaliationRepository,
+    PostgresGetAvaliationByUserIdRepository,
     PostgresGetUserLqcByIdRepository,
 } from '../../repositories/postgres/index.js'
-import { CreateAvaliationUseCase } from '../../use-cases/index.js'
+import {
+    CreateAvaliationUseCase,
+    GetAvaliationByUserIdUseCase,
+} from '../../use-cases/index.js'
 
 export const makeCreateAvaliationController = () => {
     const createAvaliationRepository = new PostgresCreateAvaliationRepository()
@@ -24,4 +31,22 @@ export const makeCreateAvaliationController = () => {
     )
 
     return createAvaliationController
+}
+
+export const makeGetAvaliationController = () => {
+    const getAvaliationByUserIdRepository =
+        new PostgresGetAvaliationByUserIdRepository()
+
+    const getUserLqcByIdRepository = new PostgresGetUserLqcByIdRepository()
+
+    const getAvaliationByUserIdUseCase = new GetAvaliationByUserIdUseCase(
+        getAvaliationByUserIdRepository,
+        getUserLqcByIdRepository,
+    )
+
+    const getAvaliationByUserIdController = new GetAvaliationByUserIdController(
+        getAvaliationByUserIdUseCase,
+    )
+
+    return getAvaliationByUserIdController
 }
