@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import {
     makeCreateAvaliationController,
+    makeDeleteAvaliationController,
     makeGetAvaliationsController,
 } from '../factories/controllers/avaliation.js'
 
@@ -19,6 +20,15 @@ avaliationRouter.get('/:userId', async (request, response) => {
     const getAvaliationController = makeGetAvaliationsController()
 
     const { statusCode, body } = await getAvaliationController.execute(request)
+
+    response.status(statusCode).send(body)
+})
+
+avaliationRouter.delete('/:userId', async (request, response) => {
+    const deleteAvaliationController = makeDeleteAvaliationController()
+
+    const { statusCode, body } =
+        await deleteAvaliationController.execute(request)
 
     response.status(statusCode).send(body)
 })
