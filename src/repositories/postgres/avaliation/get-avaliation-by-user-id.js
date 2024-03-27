@@ -1,10 +1,12 @@
-import { prisma } from '../../../../prisma/prisma.js'
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
 
 export class PostgresGetAvaliationByUserIdRepository {
-    async execute(userLqcId) {
+    async execute(userId) {
         return await prisma.avaliation.findMany({
             where: {
-                user_id: userLqcId,
+                user_lqc_id: userId,
             },
         })
     }

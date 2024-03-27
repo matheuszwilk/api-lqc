@@ -1,20 +1,20 @@
 import { UserNotFoundError } from '../../errors/user.js'
 
 export class GetAvaliationByUserIdUseCase {
-    constructor(getAvaliationByUserIdRepository, getUserLqcByIdRepository) {
+    constructor(getAvaliationByUserIdRepository, getUserByIdRepository) {
         this.getAvaliationByUserIdRepository = getAvaliationByUserIdRepository
-        this.getUserLqcByIdRepository = getUserLqcByIdRepository
+        this.getUserByIdRepository = getUserByIdRepository
     }
 
-    async execute(userLqcId) {
-        const user = await this.getUserLqcByIdRepository.execute(userLqcId)
+    async execute(userId) {
+        const user = await this.getUserByIdRepository.execute(userId)
 
         if (!user) {
-            throw new UserNotFoundError(userLqcId)
+            throw new UserNotFoundError(userId)
         }
 
         const avaliation =
-            await this.getAvaliationByUserIdRepository.execute(userLqcId)
+            await this.getAvaliationByUserIdRepository.execute(userId)
 
         return avaliation
     }

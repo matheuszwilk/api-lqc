@@ -3,7 +3,6 @@ import {
     checkIfIdIsValid,
     invalidIdResponse,
     ok,
-    requiredFieldIsMissingResponse,
     serverError,
     userNotFoundResponse,
 } from '../helpers/index.js'
@@ -15,20 +14,16 @@ export class GetAvaliationByUserIdController {
 
     async execute(httpRequest) {
         try {
-            const userLqcId = httpRequest.query.userLqcId
+            const userId = httpRequest.params.userId
 
-            if (!userLqcId) {
-                return requiredFieldIsMissingResponse('userLqcId')
-            }
-
-            const userIdIsValid = checkIfIdIsValid(userLqcId)
+            const userIdIsValid = checkIfIdIsValid(userId)
 
             if (!userIdIsValid) {
                 return invalidIdResponse()
             }
 
             const avaliation =
-                await this.getAvaliationByUserIdUseCase.execute(userLqcId)
+                await this.getAvaliationByUserIdUseCase.execute(userId)
 
             return ok(avaliation)
         } catch (error) {

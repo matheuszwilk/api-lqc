@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import {
     makeCreateAvaliationController,
-    makeGetAvaliationController,
+    makeGetAvaliationsController,
 } from '../factories/controllers/avaliation.js'
 
 export const avaliationRouter = Router()
@@ -15,8 +15,8 @@ avaliationRouter.post('/', async (request, response) => {
     response.status(statusCode).send(body)
 })
 
-avaliationRouter.get('/:userLqcId', async (request, response) => {
-    const createAvaliationController = makeGetAvaliationController()
+avaliationRouter.get('/:userId', async (request, response) => {
+    const createAvaliationController = makeGetAvaliationsController()
 
     const { statusCode, body } =
         await createAvaliationController.execute(request)
