@@ -16,12 +16,12 @@ import {
 } from '../../use-cases/index.js'
 import {
     CreateUserLqcController,
+    DeleteUserLqcController,
     GetAllUsersController,
     GetUserLqcByIdController,
     UpdateUserLqcController,
 } from '../../controllers/index.js'
 import { IdGeneratorAdapter } from '../../adapters/index.js'
-import { DeleteUserLqcController } from '../../controllers/user-lqc/delete-user-lqc.js'
 
 export const makeCreateUserLqcController = () => {
     const getUserByIdRepository = new PostgresGetUserByIdRepository()
