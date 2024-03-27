@@ -37,6 +37,9 @@ export const createAvaliationSchema = z.object({
         .min(1, {
             message: 'Score must be greater than 0.',
         })
+        .max(10, {
+            message: 'Score must be less than or equal to 10.',
+        })
         .refine((value) =>
             validator.isCurrency(value.toFixed(2), {
                 digits_after_decimal: [2],
