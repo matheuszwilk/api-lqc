@@ -1,4 +1,4 @@
-import { IdGeneratorAdapter } from '../../adapters'
+import { IdGeneratorAdapter } from '../../adapters/id-generator.js'
 import { CreateAvaliationController } from '../../controllers/index.js'
 import {
     PostgresCreateAvaliationRepository,
@@ -13,7 +13,7 @@ export const makeCreateAvaliationController = () => {
 
     const idGeneratorAdapter = new IdGeneratorAdapter()
 
-    const createAvaliationUseCase = CreateAvaliationUseCase(
+    const createAvaliationUseCase = new CreateAvaliationUseCase(
         createAvaliationRepository,
         getUserByIdLqcRepository,
         idGeneratorAdapter,
