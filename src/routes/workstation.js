@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { makeCreateWorkstationController } from '../factories/controllers/workstation'
+import { makeCreateWorkstationController } from '../factories/controllers/workstation.js'
 
 export const workstationRouter = Router()
 
