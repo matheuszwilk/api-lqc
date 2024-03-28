@@ -18,3 +18,5 @@ export * from './avaliation/create-avaliation.js'
 export * from './avaliation/get-avaliation-by-user-id.js'
 export * from './avaliation/delete-avaliation.js'
 export * from './avaliation/update-avaliation.js'
+
+export * from './workstation/create-workstation.js'
