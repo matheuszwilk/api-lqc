@@ -32,11 +32,9 @@ export const createWorkstationSchema = z.object({
             message: 'Type must be AA1, AC1, AC2, AC3 or AM1.',
         }),
     }),
-    Able: z
-        .boolean({
-            required_error: 'Select True or False.',
-        })
-        .trim(),
+    Able: z.boolean({
+        required_error: 'Select True or False.',
+    }),
 })
 
 export const updateWorkstationSchema = createWorkstationSchema
