@@ -4,6 +4,7 @@ import {
     transactionsRouter,
     usersLqcRouter,
     avaliationRouter,
+    workstationRouter,
 } from './routes/index.js'
 
 export const app = express()
@@ -14,3 +15,4 @@ app.use('/api/users', usersRouter)
 app.use('/api/userslqc', usersLqcRouter)
 app.use('/api/transactions', transactionsRouter)
 app.use('/api/avaliation', avaliationRouter)
+app.use('/api/workstation', workstationRouter)
