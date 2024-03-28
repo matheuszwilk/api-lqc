@@ -22,7 +22,7 @@ export class CreateWorkstationUseCase {
 
         const avaliationIdLqc = this.idGeneratorAdapter.execute()
 
-        const avaliation = await this.createAvaliationRepository.execute({
+        const avaliation = await this.createWorkstationRepository.execute({
             ...createWorkstationParams,
             id: avaliationIdLqc,
         })

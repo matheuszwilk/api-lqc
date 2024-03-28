@@ -44,7 +44,7 @@ model WorkStation {
   user_lqc_id      String               @db.Uuid
   station_type     station_name_type
   line_type        line_type            
-  Able             Boolean              @db.Boolean
+  Able             Boolean              @default(false) @db.Boolean
   user_lqc User_LQC                     @relation(fields: [user_lqc_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }
 
