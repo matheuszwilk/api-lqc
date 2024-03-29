@@ -3,6 +3,7 @@ import {
     makeCreateUserLqcController,
     makeDeleteUserLqcController,
     makeGetAllUserLqcController,
+    makeGetUserAndWorkStationByUserLqcIdController,
     makeGetUserLqcByIdController,
     makeUpdateLqcController,
 } from '../factories/controllers/user_lqc.js'
@@ -17,18 +18,28 @@ usersLqcRouter.post('/', async (request, response) => {
     response.status(statusCode).send(body)
 })
 
-usersLqcRouter.get('/', async (request, response) => {
-    const getUserLqcController = makeGetAllUserLqcController()
-
-    const { statusCode, body } = await getUserLqcController.execute(request)
-
-    response.status(statusCode).send(body)
-})
-
 usersLqcRouter.get('/:userId', async (request, response) => {
     const getUserLqcByIdController = makeGetUserLqcByIdController()
 
     const { statusCode, body } = await getUserLqcByIdController.execute(request)
+
+    response.status(statusCode).send(body)
+})
+
+usersLqcRouter.get('/:userId/workstation', async (request, response) => {
+    const getUserAndWorkStationByLqcByIdController =
+        makeGetUserAndWorkStationByUserLqcIdController()
+
+    const { statusCode, body } =
+        await getUserAndWorkStationByLqcByIdController.execute(request)
+
+    response.status(statusCode).send(body)
+})
+
+usersLqcRouter.get('/', async (request, response) => {
+    const getUserLqcController = makeGetAllUserLqcController()
+
+    const { statusCode, body } = await getUserLqcController.execute(request)
 
     response.status(statusCode).send(body)
 })
