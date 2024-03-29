@@ -6,7 +6,7 @@ export class PostgresGetWorkstationUserIdRepository {
     async execute(userId) {
         return await prisma.workStation.findMany({
             where: {
-                user_id_lqc: userId,
+                user_lqc_id: userId,
             },
         })
     }
