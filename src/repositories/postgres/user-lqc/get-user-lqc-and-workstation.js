@@ -7,7 +7,7 @@ export class PostgresGetUserAndWorkStationByUserLqcIdRepository {
                 id: userId,
             },
             include: {
-                workStations: true,
+                workstation: true,
             },
         })
     }
