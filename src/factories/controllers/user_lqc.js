@@ -2,6 +2,7 @@ import {
     PostgresCreateUserLqcRepository,
     PostgresDeleteUserLqcRepository,
     PostgresGetAllUserLqcRepository,
+    PostgresGetUserAndWorkStationByUserLqcIdRepository,
     PostgresGetUserByIdRepository,
     PostgresGetUserByRegistrationRepository,
     PostgresGetUserLqcByIdRepository,
@@ -11,6 +12,7 @@ import {
     CreateUserLqcUseCase,
     DeleteUserLqcUseCase,
     GetAllUsersUseCase,
+    GetUserAndWorkStationByUserLqcIdUseCase,
     GetUserLqcByIdUseCase,
     UpdateUserLqcUseCase,
 } from '../../use-cases/index.js'
@@ -18,6 +20,7 @@ import {
     CreateUserLqcController,
     DeleteUserLqcController,
     GetAllUsersController,
+    GetUserAndWorkStationByUserLqcIdController,
     GetUserLqcByIdController,
     UpdateUserLqcController,
 } from '../../controllers/index.js'
@@ -67,6 +70,26 @@ export const makeGetUserLqcByIdController = () => {
     )
 
     return getUserLqcController
+}
+
+export const makeGetUserAndWorkStationByUserLqcIdController = () => {
+    const getUserLqcByIdRepository = new PostgresGetUserLqcByIdRepository()
+
+    const getWorkstationByUserIdRepository =
+        new PostgresGetUserAndWorkStationByUserLqcIdRepository()
+
+    const getUserAndWorkStationByUserLqcIdUseCase =
+        new GetUserAndWorkStationByUserLqcIdUseCase(
+            getUserLqcByIdRepository,
+            getWorkstationByUserIdRepository,
+        )
+
+    const getUserAndWorkStationByUserLqcIdController =
+        new GetUserAndWorkStationByUserLqcIdController(
+            getUserAndWorkStationByUserLqcIdUseCase,
+        )
+
+    return getUserAndWorkStationByUserLqcIdController
 }
 
 export const makeDeleteUserLqcController = () => {
