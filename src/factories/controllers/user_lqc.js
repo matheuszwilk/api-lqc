@@ -2,6 +2,7 @@ import {
     PostgresCreateUserLqcRepository,
     PostgresDeleteUserLqcRepository,
     PostgresGetAllUserLqcRepository,
+    PostgresGetUserAndAvaliationByUserLqcIdRepository,
     PostgresGetUserAndWorkStationByUserLqcIdRepository,
     PostgresGetUserByIdRepository,
     PostgresGetUserByRegistrationRepository,
@@ -12,6 +13,7 @@ import {
     CreateUserLqcUseCase,
     DeleteUserLqcUseCase,
     GetAllUsersUseCase,
+    GetUserAndAvaliationByUserLqcIdUseCase,
     GetUserAndWorkStationByUserLqcIdUseCase,
     GetUserLqcByIdUseCase,
     UpdateUserLqcUseCase,
@@ -20,6 +22,7 @@ import {
     CreateUserLqcController,
     DeleteUserLqcController,
     GetAllUsersController,
+    GetUserAndAvaliationByUserLqcIdController,
     GetUserAndWorkStationByUserLqcIdController,
     GetUserLqcByIdController,
     UpdateUserLqcController,
@@ -90,6 +93,26 @@ export const makeGetUserAndWorkStationByUserLqcIdController = () => {
         )
 
     return getUserAndWorkStationByUserLqcIdController
+}
+
+export const makeGetUserAndAvaliationByUserLqcIdController = () => {
+    const getUserLqcByIdRepository = new PostgresGetUserLqcByIdRepository()
+
+    const getUserAndAvaliationByUserIdRepository =
+        new PostgresGetUserAndAvaliationByUserLqcIdRepository()
+
+    const getUserAndAvaliationByUserLqcIdUseCase =
+        new GetUserAndAvaliationByUserLqcIdUseCase(
+            getUserLqcByIdRepository,
+            getUserAndAvaliationByUserIdRepository,
+        )
+
+    const getUserAndAvaliationByUserLqcIdController =
+        new GetUserAndAvaliationByUserLqcIdController(
+            getUserAndAvaliationByUserLqcIdUseCase,
+        )
+
+    return getUserAndAvaliationByUserLqcIdController
 }
 
 export const makeDeleteUserLqcController = () => {
