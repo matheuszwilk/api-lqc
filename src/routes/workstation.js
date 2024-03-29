@@ -3,6 +3,7 @@ import {
     makeCreateWorkstationController,
     makeDeleteWorkstationController,
     makeGetWorkstationController,
+    makeUpdateWorkstationController,
 } from '../factories/controllers/workstation.js'
 
 export const workstationRouter = Router()
@@ -29,6 +30,15 @@ workstationRouter.delete('/:workstationId', async (request, response) => {
 
     const { statusCode, body } =
         await deleteWorkstationController.execute(request)
+
+    response.status(statusCode).send(body)
+})
+
+workstationRouter.patch('/:workstationId', async (request, response) => {
+    const updateWorkstationController = makeUpdateWorkstationController()
+
+    const { statusCode, body } =
+        await updateWorkstationController.execute(request)
 
     response.status(statusCode).send(body)
 })

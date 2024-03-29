@@ -3,9 +3,9 @@ export class UpdateWorkStationUseCase {
         this.updateWorkStationRepository = updateWorkStationRepository
     }
 
-    async execute(userId, updateWorkStationParams) {
+    async execute(workstationId, updateWorkStationParams) {
         const workstation = await this.updateWorkStationRepository.execute(
-            userId,
+            workstationId,
             updateWorkStationParams,
         )
 

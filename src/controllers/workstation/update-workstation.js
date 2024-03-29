@@ -16,7 +16,7 @@ export class UpdateWorkStationController {
     }
     async execute(httpRequest) {
         try {
-            const idIsValid = checkIfIdIsValid(httpRequest.params.userId)
+            const idIsValid = checkIfIdIsValid(httpRequest.params.workstationId)
 
             if (!idIsValid) {
                 return invalidIdResponse()
@@ -27,7 +27,7 @@ export class UpdateWorkStationController {
             await updateWorkstationSchema.parseAsync(updateWorkStationParams)
 
             const workstation = await this.updateAvaliationUseCase.execute(
-                httpRequest.params.userId,
+                httpRequest.params.workstationId,
                 updateWorkStationParams,
             )
 
