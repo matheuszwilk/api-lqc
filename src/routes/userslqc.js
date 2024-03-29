@@ -3,6 +3,7 @@ import {
     makeCreateUserLqcController,
     makeDeleteUserLqcController,
     makeGetAllUserLqcController,
+    makeGetUserAndAvaliationByUserLqcIdController,
     makeGetUserAndWorkStationByUserLqcIdController,
     makeGetUserLqcByIdController,
     makeUpdateLqcController,
@@ -32,6 +33,16 @@ usersLqcRouter.get('/:userId/workstation', async (request, response) => {
 
     const { statusCode, body } =
         await getUserAndWorkStationByLqcByIdController.execute(request)
+
+    response.status(statusCode).send(body)
+})
+
+usersLqcRouter.get('/:userId/avaliation', async (request, response) => {
+    const getUserAndAvaliationByLqcByIdController =
+        makeGetUserAndAvaliationByUserLqcIdController()
+
+    const { statusCode, body } =
+        await getUserAndAvaliationByLqcByIdController.execute(request)
 
     response.status(statusCode).send(body)
 })
