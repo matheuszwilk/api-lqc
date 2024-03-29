@@ -23,3 +23,4 @@ export * from './avaliation/update-avaliation.js'
 
 export * from './workstation/create-workstation.js'
 export * from './workstation/get-workstation.js'
+export * from './workstation/delete-workstation.js'
