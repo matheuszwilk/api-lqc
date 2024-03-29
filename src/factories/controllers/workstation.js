@@ -34,14 +34,14 @@ export const makeCreateWorkstationController = () => {
 }
 
 export const makeGetWorkstationController = () => {
+    const getUserByIdRepository = new PostgresGetUserLqcByIdRepository()
+
     const getWorkstationByUserIdRepository =
         new PostgresGetWorkstationUserIdRepository()
 
-    const getUserByIdRepository = new PostgresGetUserLqcByIdRepository()
-
-    const getWorkstationByUserIdUseCase = GetWorkstationByUserIdUseCase(
-        getWorkstationByUserIdRepository,
+    const getWorkstationByUserIdUseCase = new GetWorkstationByUserIdUseCase(
         getUserByIdRepository,
+        getWorkstationByUserIdRepository,
     )
 
     const getWorkstationByUserIdController =
