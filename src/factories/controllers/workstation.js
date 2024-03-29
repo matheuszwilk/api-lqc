@@ -3,17 +3,20 @@ import {
     CreateWorkstationController,
     DeleteWorkstationController,
     GetWorkstationByUserIdController,
+    UpdateWorkStationController,
 } from '../../controllers/index.js'
 import {
     PostgresCreateWorkstationRepository,
     PostgresDeleteWorkstationRepository,
     PostgresGetUserLqcByIdRepository,
     PostgresGetWorkstationUserIdRepository,
+    PostgresUpdateWorkStationRepository,
 } from '../../repositories/postgres/index.js'
 import {
     CreateWorkstationUseCase,
     DeleteWorkstationUseCase,
     GetWorkstationByUserIdUseCase,
+    UpdateWorkStationUseCase,
 } from '../../use-cases/index.js'
 
 export const makeCreateWorkstationController = () => {
@@ -66,4 +69,19 @@ export const makeDeleteWorkstationController = () => {
     )
 
     return deleteWorkstationController
+}
+
+export const makeUpdateWorkstationController = () => {
+    const updateWorkStationRepository =
+        new PostgresUpdateWorkStationRepository()
+
+    const updateWorkStationUseCase = new UpdateWorkStationUseCase(
+        updateWorkStationRepository,
+    )
+
+    const updateWorkStationController = new UpdateWorkStationController(
+        updateWorkStationUseCase,
+    )
+
+    return updateWorkStationController
 }
