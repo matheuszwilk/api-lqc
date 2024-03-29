@@ -15,7 +15,7 @@ workstationRouter.post('/', async (request, response) => {
     response.status(statusCode).send(body)
 })
 
-workstationRouter.get('/:userId', async (request, response) => {
+workstationRouter.get('', async (request, response) => {
     const getWorkstationController = makeGetWorkstationController()
 
     const { statusCode, body } = await getWorkstationController.execute(request)
