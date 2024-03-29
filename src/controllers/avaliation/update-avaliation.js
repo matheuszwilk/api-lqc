@@ -26,12 +26,12 @@ export class UpdateAvaliationController {
 
             await updateAvaliationSchema.parseAsync(updateAvaliationParams)
 
-            const transaction = await this.updateAvaliationUseCase.execute(
+            const avaliation = await this.updateAvaliationUseCase.execute(
                 httpRequest.params.userId,
                 updateAvaliationParams,
             )
 
-            return ok(transaction)
+            return ok(avaliation)
         } catch (error) {
             if (error instanceof ZodError) {
                 return badRequest({
