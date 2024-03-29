@@ -1,14 +1,20 @@
+import { UserNotFoundError } from '../../errors/user.js'
+
 export class GetUserAndWorkStationByUserLqcIdUseCase {
-    constructor(getUserAndWorkStationByUserLqcIdRepository) {
-        this.getUserAndWorkStationByUserLqcIdRepository =
-            getUserAndWorkStationByUserLqcIdRepository
+    constructor(getUserByIdRepository, getWorkstationByUserIdRepository) {
+        this.getUserByIdRepository = getUserByIdRepository
+        this.getWorkstationByUserIdRepository = getWorkstationByUserIdRepository
     }
     async execute(userId) {
-        const user =
-            await this.getUserAndWorkStationByUserLqcIdRepository.execute(
-                userId,
-            )
+        const user = await this.getUserByIdRepository.execute(userId)
 
-        return user
+        if (!user) {
+            throw new UserNotFoundError(userId)
+        }
+
+        const workstation =
+            await this.getWorkstationByUserIdRepository.execute(userId)
+
+        return workstation
     }
 }
