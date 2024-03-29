@@ -3,9 +3,9 @@ export class DeleteWorkstationUseCase {
         this.deleteWorkstationRepository = deleteWorkstationRepository
     }
 
-    async execute(userId) {
+    async execute(workstationId) {
         const workstation =
-            await this.deleteWorkstationRepository.execute(userId)
+            await this.deleteWorkstationRepository.execute(workstationId)
 
         return workstation
     }

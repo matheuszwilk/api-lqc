@@ -14,16 +14,16 @@ export class DeleteWorkstationController {
 
     async execute(httpRequest) {
         try {
-            const userId = httpRequest.params.userId
+            const workstationId = httpRequest.params.workstationId
 
-            const idIsValid = checkIfIdIsValid(userId)
+            const idIsValid = checkIfIdIsValid(workstationId)
 
             if (!idIsValid) {
                 return invalidIdResponse()
             }
 
             const deletedWorkstation =
-                await this.deleteWorkstationUseCase.execute(userId)
+                await this.deleteWorkstationUseCase.execute(workstationId)
 
             return ok(deletedWorkstation)
         } catch (error) {
