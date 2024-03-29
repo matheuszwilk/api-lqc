@@ -75,13 +75,13 @@ export const makeGetUserLqcByIdController = () => {
 export const makeGetUserAndWorkStationByUserLqcIdController = () => {
     const getUserLqcByIdRepository = new PostgresGetUserLqcByIdRepository()
 
-    const getWorkstationByUserIdRepository =
+    const getUserAndWorkstationByUserIdRepository =
         new PostgresGetUserAndWorkStationByUserLqcIdRepository()
 
     const getUserAndWorkStationByUserLqcIdUseCase =
         new GetUserAndWorkStationByUserLqcIdUseCase(
             getUserLqcByIdRepository,
-            getWorkstationByUserIdRepository,
+            getUserAndWorkstationByUserIdRepository,
         )
 
     const getUserAndWorkStationByUserLqcIdController =
