@@ -9,8 +9,10 @@ export * from './transaction/update-transaction.js'
 export * from './transaction/delete-transaction.js'
 
 export * from './user-lqc/create-user-lqc.js'
-export * from './user-lqc/get-user-lqc.js'
 export * from './user-lqc/get-user-lqc-by-id.js'
+export * from './user-lqc/get-user-lqc-and-workstation.js'
+export * from './user-lqc/get-user-lqc.js'
+
 export * from './user-lqc/delete-user-lqc.js'
 export * from './user-lqc/update-user-lqc.js'
 
