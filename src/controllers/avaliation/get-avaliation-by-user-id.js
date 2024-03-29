@@ -14,7 +14,7 @@ export class GetAvaliationByUserIdController {
 
     async execute(httpRequest) {
         try {
-            const userId = httpRequest.params.userId
+            const userId = httpRequest.query.userId
 
             const userIdIsValid = checkIfIdIsValid(userId)
 
@@ -34,7 +34,7 @@ export class GetAvaliationByUserIdController {
             if (error instanceof UserNotFoundError) {
                 return userNotFoundResponse()
             }
-
+            console.log(error)
             return serverError()
         }
     }
