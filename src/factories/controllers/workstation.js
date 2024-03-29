@@ -1,15 +1,18 @@
 import { IdGeneratorAdapter } from '../../adapters/index.js'
 import {
     CreateWorkstationController,
+    DeleteWorkstationController,
     GetWorkstationByUserIdController,
 } from '../../controllers/index.js'
 import {
     PostgresCreateWorkstationRepository,
+    PostgresDeleteWorkstationRepository,
     PostgresGetUserLqcByIdRepository,
     PostgresGetWorkstationUserIdRepository,
 } from '../../repositories/postgres/index.js'
 import {
     CreateWorkstationUseCase,
+    DeleteWorkstationUseCase,
     GetWorkstationByUserIdUseCase,
 } from '../../use-cases/index.js'
 
@@ -48,4 +51,19 @@ export const makeGetWorkstationController = () => {
         new GetWorkstationByUserIdController(getWorkstationByUserIdUseCase)
 
     return getWorkstationByUserIdController
+}
+
+export const makeDeleteWorkstationController = () => {
+    const deleteWorkstationRepository =
+        new PostgresDeleteWorkstationRepository()
+
+    const deleteWorkstationUseCase = new DeleteWorkstationUseCase(
+        deleteWorkstationRepository,
+    )
+
+    const deleteWorkstationController = new DeleteWorkstationController(
+        deleteWorkstationUseCase,
+    )
+
+    return deleteWorkstationController
 }
