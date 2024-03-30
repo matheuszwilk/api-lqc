@@ -24,6 +24,7 @@ model User_LQC {
   registration        String         @unique @db.VarChar(50)
   position            position_type
   admission_date      DateTime       @db.Date
+  imageUrl            String         
   user User                          @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
   avaliations Avaliation[]    
   workstation WorkStation[]
@@ -35,7 +36,8 @@ model Avaliation {
   type             avaliation_type
   score            Decimal           @db.Decimal(2,0)
   date             DateTime          @db.Date
-  comment          String            @db.VarChar(2000)
+  imageUrl         String?            
+  comment          String?            @db.VarChar(2000)
   user_lqc User_LQC                  @relation(fields: [user_lqc_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }
 
