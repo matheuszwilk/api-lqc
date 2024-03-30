@@ -26,7 +26,7 @@ export class UpdateWorkStationController {
 
             await updateWorkstationSchema.parseAsync(updateWorkStationParams)
 
-            const workstation = await this.updateAvaliationUseCase.execute(
+            const workstation = await this.updateWorkStationUseCase.execute(
                 httpRequest.params.workstationId,
                 updateWorkStationParams,
             )
