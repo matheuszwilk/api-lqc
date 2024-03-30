@@ -1,3 +1,4 @@
+import { UserNotFoundError } from '../../errors/user.js'
 import {
     checkIfIdIsValid,
     invalidIdResponse,
@@ -31,6 +32,9 @@ export class GetUserAndAvaliationByUserLqcIdController {
 
             return ok(user)
         } catch (error) {
+            if (error instanceof UserNotFoundError) {
+                return userNotFoundResponse()
+            }
             console.error(error)
             return serverError()
         }
