@@ -45,6 +45,14 @@ export const creeateUserLQCSchema = z.object({
         .datetime({
             message: 'Date must be a valid date.',
         }),
+    imageUrl: z
+        .string({
+            required_error: 'Imagem URL is required.',
+        })
+        .trim()
+        .min(1, {
+            message: 'Valid Imagem URL is required.',
+        }),
 })
 
 export const updateUserLQCSchema = creeateUserLQCSchema.partial().strict({
