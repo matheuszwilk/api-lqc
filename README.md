@@ -56,6 +56,7 @@ The system consists of the following data models:
 - **registration**: Unique registration code for the user.
 - **position**: Position type of the user.
 - **admission_date**: Date of admission for the user.
+- **imageUrl**: Url image of the user LQC.
 - **avaliations**: Evaluations associated with the user.
 - **workstation**: Workstations assigned to the user.
 
@@ -66,6 +67,7 @@ The system consists of the following data models:
 - **type**: Type of evaluation.
 - **score**: Score of the evaluation.
 - **date**: Date of the evaluation.
+- **imageUrl**: Url image of the evaluation.
 - **comment**: Additional comments for the evaluation.
 
 ### WorkStation
