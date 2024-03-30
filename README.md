@@ -17,9 +17,6 @@ This repository contains the source code for a User LQC (Line Quality Control) m
 
 ## Scripts
 
-- **test**: Run tests using Jest with environment variables from `.env.test`.
-- **test:watch**: Run tests in watch mode.
-- **test:coverage**: Run tests with coverage report.
 - **postinstall**: Install Husky Git hooks and generate Prisma client.
 - **start:dev**: Start the application in development mode with nodemon watching for changes.
 
