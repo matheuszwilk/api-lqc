@@ -1,7 +1,6 @@
 import express from 'express'
 import {
     usersRouter,
-    transactionsRouter,
     usersLqcRouter,
     avaliationRouter,
     workstationRouter,
@@ -13,6 +12,5 @@ app.use(express.json())
 
 app.use('/api/users', usersRouter)
 app.use('/api/userslqc', usersLqcRouter)
-app.use('/api/transactions', transactionsRouter)
 app.use('/api/avaliation', avaliationRouter)
 app.use('/api/workstation', workstationRouter)
