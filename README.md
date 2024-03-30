@@ -89,7 +89,8 @@ The system includes several enums for defining types:
 
 ## Usage
 
-To use this system, ensure you have Node.js and npm installed on your machine. Clone this repository and install dependencies using `npm install`. Configure your PostgreSQL database connection URL in a `.env` file. Then, run the application using `npm start`.
+To use this system, ensure you have Node.js and npm installed on your machine. Clone this repository and install dependencies using `npm install`. Configure your PostgreSQL database connection URL and PORT in a `.env` file. Then, run `docker compose` and `prisma migrate` finally, use the application with npm `start:dev`.
+
 
 ## Contributing
 
