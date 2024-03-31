@@ -5,10 +5,12 @@ import {
     avaliationRouter,
     workstationRouter,
 } from './routes/index.js'
+import cors from 'cors'
 
 export const app = express()
 
 app.use(express.json())
+app.use(cors())
 
 app.use('/api/users', usersRouter)
 app.use('/api/userslqc', usersLqcRouter)
