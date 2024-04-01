@@ -59,7 +59,7 @@ export const createAvaliationSchema = z.object({
             required_error: 'Imagem URL is required.',
         })
         .trim()
-        .min(1, {
+        .min(0, {
             message: 'Valid Imagem URL is required.',
         }),
     comment: z

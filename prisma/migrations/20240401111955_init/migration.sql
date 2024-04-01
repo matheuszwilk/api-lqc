@@ -43,7 +43,7 @@ CREATE TABLE "Avaliation" (
     "score" DECIMAL(2,0) NOT NULL,
     "date" DATE NOT NULL,
     "imageUrl" TEXT,
-    "comment" VARCHAR(2000) NOT NULL,
+    "comment" VARCHAR(2000),
 
     CONSTRAINT "Avaliation_pkey" PRIMARY KEY ("id")
 );
