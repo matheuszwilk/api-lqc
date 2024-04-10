@@ -4,6 +4,7 @@ import {
     usersLqcRouter,
     avaliationRouter,
     workstationRouter,
+    loginRouter,
 } from './routes/index.js'
 import cors from 'cors'
 
@@ -16,3 +17,4 @@ app.use('/api/users', usersRouter)
 app.use('/api/userslqc', usersLqcRouter)
 app.use('/api/avaliation', avaliationRouter)
 app.use('/api/workstation', workstationRouter)
+app.use('/api/login', loginRouter)

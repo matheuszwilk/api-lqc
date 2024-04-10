@@ -23,7 +23,7 @@ export class CreateUserUseCase {
 
         const userId = this.idGeneratorAdapter.execute()
 
-        const hashedPassword = await this.passwordHasherAdapter.execute(
+        const hashedPassword = await this.passwordHasherAdapter.hash(
             createUserParams.password,
         )
 

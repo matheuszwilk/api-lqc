@@ -20,3 +20,5 @@ export * from './workstation/create-workstation.js'
 export * from './workstation/get-workstation.js'
 export * from './workstation/delete-workstation.js'
 export * from './workstation/update-workstation.js'
+
+export * from './login/login.js'

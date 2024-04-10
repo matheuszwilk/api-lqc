@@ -5,16 +5,22 @@ import {
     makeGetUserByIdController,
     makeUpdateUserController,
 } from '../factories/controllers/user.js'
+import { verifyTokenMiddleware } from '../middlewares/index.js'
 
 export const usersRouter = Router()
 
-usersRouter.get('/:userId', async (request, response) => {
-    const getUserByIdController = makeGetUserByIdController()
+usersRouter.get(
+    '/:userId',
+    verifyTokenMiddleware,
+    async (request, response) => {
+        const getUserByIdController = makeGetUserByIdController()
 
-    const { statusCode, body } = await getUserByIdController.execute(request)
+        const { statusCode, body } =
+            await getUserByIdController.execute(request)
 
-    response.status(statusCode).send(body)
-})
+        response.status(statusCode).send(body)
+    },
+)
 
 usersRouter.post('/', async (request, response) => {
     const createUserController = makeCreateUserController()
